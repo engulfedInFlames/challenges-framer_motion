@@ -1,6 +1,7 @@
 import { DefaultTheme } from "styled-components";
 
-export const theme: DefaultTheme = {
-  bgColor: "rgba(255,255,255,1)",
-  textColor: "rgba(0,0,0,1)",
+export const defaultTheme: DefaultTheme = {
+  bgColor: "#8458B3", // Purple Pain
+  textColor: "rgba(255,255,255,1)",
+  boxColor: "#d0bdf4", // Medium Purple
 };

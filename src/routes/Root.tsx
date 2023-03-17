@@ -1,8 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import reset from "styled-reset";
-import { theme } from "../css/theme";
-import Header from "./Header";
+import { defaultTheme } from "../css/theme";
 
 const GlobalStlye = createGlobalStyle`
   ${reset}
@@ -15,6 +14,7 @@ const GlobalStlye = createGlobalStyle`
   }
   body {
     min-height: 100vh;
+    background-color: ${(props) => props.theme.bgColor};
   }
 
 `;
@@ -22,9 +22,8 @@ const GlobalStlye = createGlobalStyle`
 function Root() {
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={defaultTheme}>
         <GlobalStlye />
-        <Header />
         <Outlet />
       </ThemeProvider>
     </>

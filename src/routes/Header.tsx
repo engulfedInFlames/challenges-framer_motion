@@ -4,10 +4,10 @@ const Wrapper = styled.div`
   height: 180px;
   display: grid;
   place-content: center center;
-  background-color: rgba(0, 0, 0, 0.1);
 `;
 
 const Title = styled.h1`
+  color: white;
   font-size: 48px;
   font-weight: bold;
 `;
@@ -15,7 +15,7 @@ const Title = styled.h1`
 function Header() {
   return (
     <Wrapper>
-      <Title>Hello React!</Title>
+      <Title>Hello Framer Motion!</Title>
     </Wrapper>
   );
 }
