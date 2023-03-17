@@ -78,8 +78,34 @@ const tabsVars: Variants = {
 };
 
 const tabVars: Variants = {
-  hover: {
-    scale: 1.1,
+  hover: (order: string) => ({
+    opacity: 0.6,
+    transformOrigin:
+      order === "firstBox"
+        ? "right bottom"
+        : "fourthBox"
+        ? "left top"
+        : undefined,
+    scaleX: 1.1,
+    scaleY: 1.1,
+  }),
+  hoverEnd: {
+    scale: 1,
+    opacity: 1,
+  },
+  start: (order: string) => ({
+    opacity: 1,
+    scale: 1,
+    transformOrigin:
+      order === "firstBox"
+        ? "right bottom"
+        : "fourthBox"
+        ? "left top"
+        : undefined,
+    scaleX: 1.0,
+    scaleY: 1.0,
+  }),
+  end: {
     opacity: 0.6,
   },
   disappear: {
@@ -115,8 +141,8 @@ function Home() {
       <Tabs variants={tabsVars} initial="start" animate="end">
         {["1", "2", "3", "4"].map((i) => (
           <Tab
+            custom={i === "1" ? "firstBox" : i === "4" ? "fourthBox" : null}
             variants={tabVars}
-            whileHover={i === "1" || i === "4" ? "hover" : undefined}
             onClick={() => {
               showOverlay();
               setIndex(i);
@@ -124,12 +150,13 @@ function Home() {
             key={i}
             id={i}
             layoutId={i}
-            exit={i === "1" || i === "4" ? "disappear" : undefined}
+            whileHover={i === "1" || i === "4" ? "hover" : undefined}
+            animate="hoverEnd"
           >
             {i === "2"
-              ? clicked && !isVisible && <Circle layoutId="aCircle" />
+              ? clicked && <Circle layoutId="aCircle" />
               : i == "3"
-              ? !clicked && !isVisible && <Circle layoutId="aCircle" />
+              ? !clicked && <Circle layoutId="aCircle" />
               : null}
           </Tab>
         ))}
