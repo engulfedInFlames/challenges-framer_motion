@@ -17,7 +17,7 @@ const myRouter = createBrowserRouter(
       errorElement: <p>404 Not Found</p>,
     },
   ],
-  { basename: "https://engulfedInFlames.github.io/challenges_framer-motion" }
+  { basename: process.env.PUBLIC_URL + "/" }
 );
 
 export default myRouter;
