@@ -50,6 +50,8 @@ const Overlay = styled(motion.div)`
 `;
 
 const Btn = styled(motion.div)`
+  cursor: pointer;
+  user-select: none;
   width: 80px;
   height: 80px;
   display: grid;
@@ -70,9 +72,7 @@ const tabsVars: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
+      duration: 0.5,
     },
   },
 };
@@ -81,11 +81,7 @@ const tabVars: Variants = {
   hover: (order: string) => ({
     opacity: 0.6,
     transformOrigin:
-      order === "firstBox"
-        ? "right bottom"
-        : "fourthBox"
-        ? "left top"
-        : undefined,
+      order === "1" ? "right bottom" : "4" ? "left top" : undefined,
     scaleX: 1.1,
     scaleY: 1.1,
   }),
@@ -93,24 +89,7 @@ const tabVars: Variants = {
     scale: 1,
     opacity: 1,
   },
-  start: (order: string) => ({
-    opacity: 1,
-    scale: 1,
-    transformOrigin:
-      order === "firstBox"
-        ? "right bottom"
-        : "fourthBox"
-        ? "left top"
-        : undefined,
-    scaleX: 1.0,
-    scaleY: 1.0,
-  }),
-  end: {
-    opacity: 0.6,
-  },
-  disappear: {
-    opacity: 0,
-  },
+  start: { scale: 1 },
 };
 
 const overlayVars: Variants = {
@@ -141,7 +120,7 @@ function Home() {
       <Tabs variants={tabsVars} initial="start" animate="end">
         {["1", "2", "3", "4"].map((i) => (
           <Tab
-            custom={i === "1" ? "firstBox" : i === "4" ? "fourthBox" : null}
+            custom={i}
             variants={tabVars}
             onClick={() => {
               showOverlay();
@@ -151,7 +130,7 @@ function Home() {
             id={i}
             layoutId={i}
             whileHover={i === "1" || i === "4" ? "hover" : undefined}
-            animate="hoverEnd"
+            initial="hoverEnd"
           >
             {i === "2"
               ? clicked && <Circle layoutId="aCircle" />
