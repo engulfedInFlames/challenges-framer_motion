@@ -81,7 +81,7 @@ const tabVars: Variants = {
   hover: (order: string) => ({
     opacity: 0.6,
     transformOrigin:
-      order === "1" ? "right bottom" : "4" ? "left top" : undefined,
+      order === "1" ? "bottom right " : "4" ? "top left" : undefined,
     scaleX: 1.1,
     scaleY: 1.1,
   }),
@@ -134,7 +134,7 @@ function Home() {
           >
             {i === "2"
               ? clicked && <Circle layoutId="aCircle" />
-              : i == "3"
+              : i === "3"
               ? !clicked && <Circle layoutId="aCircle" />
               : null}
           </Tab>
